@@ -78,7 +78,7 @@
       background-color: #fdd835;
       border-color: #fdd835;
     }
-    #about-section {
+    #about-section, #projects-section {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
@@ -90,16 +90,50 @@
       margin: 2rem auto 0;
       padding: 0 1rem;
     }
-    #about-section.show {
-      max-height: 500px; /* enough to show content */
+    #about-section.show, #projects-section.show {
+      max-height: 1000px; /* enough to show content */
       opacity: 1;
       padding: 1rem;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .project-item {
+      width: 140px;
+      text-align: center;
+    }
+    .project-item img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .project-item p {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      color: #333;
     }
   </style>
   <script>
     function toggleAbout() {
-      var section = document.getElementById('about-section');
-      section.classList.toggle('show');
+      const about = document.getElementById('about-section');
+      const projects = document.getElementById('projects-section');
+      about.classList.toggle('show');
+      // Hide projects if about is shown
+      if (about.classList.contains('show')) {
+        projects.classList.remove('show');
+      }
+    }
+    function toggleProjects() {
+      const projects = document.getElementById('projects-section');
+      const about = document.getElementById('about-section');
+      projects.classList.toggle('show');
+      // Hide about if projects is shown
+      if (projects.classList.contains('show')) {
+        about.classList.remove('show');
+      }
     }
   </script>
 </head>
@@ -125,7 +159,7 @@
 
     <div class="buttons">
       <button class="highlight" onclick="toggleAbout()">About Me</button>
-      <a href="#">My Gallery</a>
+      <button onclick="toggleProjects()">My Projects</button>
     </div>
 
     <div id="about-section" aria-hidden="true">
@@ -133,6 +167,32 @@
       <p>I am a content creator with over 25,000 subscribers on YouTube, where I produce engaging vlogs and high-performing Shorts. In addition, I have a strong presence on Instagram with 5,912 followers. I specialize in creating promotional content—both videos and Shorts—featuring high-quality videography, photography, and dynamic editing.</p>
       <p>My work is focused on capturing attention and delivering your message in an entertaining and visually compelling way.</p>
       <p>Whether you're looking to promote a product, brand, event, or experience, I can deliver content that resonates with your audience and drives results.</p>
+    </div>
+
+    <div id="projects-section" aria-hidden="true">
+      <h2>My Projects</h2>
+      <div class="gallery">
+        <div class="project-item">
+          <img src="https://raw.githubusercontent.com/Bhavish2007/My-Portfolio/refs/heads/main/DominosPizza.jpg" alt="Domino's Pizza Project" />
+          <p>Worked with Domino's Pizza</p>
+        </div>
+        <div class="project-item">
+          <img src="https://raw.githubusercontent.com/Bhavish2007/My-Portfolio/refs/heads/main/Zouk.jpg" alt="Zouk Project" />
+          <p>Zouk</p>
+        </div>
+        <div class="project-item">
+          <img src="https://raw.githubusercontent.com/Bhavish2007/My-Portfolio/refs/heads/main/FacesCanada.jpg" alt="Faces Canada Project" />
+          <p>Faces Canada</p>
+        </div>
+        <div class="project-item">
+          <img src="https://raw.githubusercontent.com/Bhavish2007/My-Portfolio/refs/heads/main/Vahdam.jpg" alt="Vahdam Tea Project" />
+          <p>Vahdam Tea</p>
+        </div>
+        <div class="project-item">
+          <img src="https://raw.githubusercontent.com/Bhavish2007/My-Portfolio/refs/heads/main/othersmallproject.jpg" alt="Other Projects" />
+          <p>Other small projects too</p>
+        </div>
+      </div>
     </div>
   </div>
 </body>
